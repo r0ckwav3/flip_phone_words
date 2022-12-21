@@ -1,3 +1,5 @@
+use std::iter;
+
 pub fn modtest(){
     println!("test");
 }
@@ -33,6 +35,12 @@ pub fn wordtonum(word: &String) -> u64{
     ans
 }
 
+pub fn numtophrase<'a, Itertype>(num: u64, words: &Itertype) -> Vec<&'a str>
+where
+    Itertype: iter::Iterator<Item = &'a str>
+{
+    vec!["test phrase"]
+}
 
 #[cfg(test)]
 mod tests {
@@ -51,5 +59,12 @@ mod tests {
         assert_eq!(wordtonum(&String::from("test")), 8378);
         assert_eq!(wordtonum(&String::from("a")), 2);
         wordtonum(&String::from("longwordtest"));
+    }
+    
+    #[test]
+    fn isprime_test() {
+        assert!(!isprime(91));
+        assert!(isprime(17));
+        assert!(!isprime(132401897324091));
     }
 }
