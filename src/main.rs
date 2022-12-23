@@ -22,10 +22,11 @@ fn main() {
     }
 
     // num to word stuff
-    let filename = "top1000words.txt";
+    let filename = "wordfiles/top10000words.txt";
+    let minwordlen = 3;
     let filecontents = fs::read_to_string(filename)
             .expect(&format!("could not find file \"{}\"", filename));
-    let mut words = filecontents.split_whitespace();
+    let mut words = filecontents.split_whitespace().filter(|x|x.len()>=minwordlen);
 
     println!("Please input a number:");
     let mut input = String::new();
